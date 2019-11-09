@@ -1,4 +1,4 @@
-# ImageFilterLibrary
+# image_processing
 
 OpenCVを用いた画像処理100本ノックやります。  
 コードは原則C++です。（Py国党ではありません）  
