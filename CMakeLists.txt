@@ -3,19 +3,18 @@ project(ImageProcessingLibrary)
 
 set(CMAKE_CXX_FLAGS "-O2 -std=c++11 -Wall")
 
+find_package(OpenCV REQUIRED)
+
 # Copy image DIR
 file(COPY ${CMAKE_SOURCE_DIR}/image/ DESTINATION ${PROJECT_BINARY_DIR}/image/)
 add_definitions(-DRESOURCE_DIR="${PROJECT_BINARY_DIR}/image/")
 
-# Create Main project
-add_executable(Main
-  src/main.cpp
-  include/gray_level_transform.hpp
-)
+###########
+## Build ##
+###########
+include_directories(include)
 
-# For OpenCV
-find_package(OpenCV REQUIRED)
-if(OpenCV_FOUND)
-  target_include_directories(Main PUBLIC ${OpenCV_INCLUDE_DIRS})
-  target_link_libraries(Main ${OpenCV_LIBS})
-endif()
+add_executable(gray_level_transform src/gray_level_transform/main.cpp)
+target_include_directories(gray_level_transform PUBLIC ${OpenCV_INCLUDE_DIRS})
+target_link_libraries(gray_level_transform ${OpenCV_LIBS})
+
